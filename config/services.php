@@ -13,6 +13,10 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'baidu_translate' =>[
+        'appid' => env('BAIDU_TRANSLATE_APPID'),
+        'key' => env('BAIDU_TRANSLATE_KEY'),
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
