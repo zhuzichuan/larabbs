@@ -32,6 +32,10 @@
     </div>
 
     <!-- Scripts -->
+    @if (app()->isLocal())
+        @include('sudosu::user-selector')
+    @endif
+
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
 </body>
