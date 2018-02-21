@@ -26,6 +26,7 @@ return [
         // 的属性的值，如 $model->id
         'id',
 
+
         'avatar' => [
             // 数据表格里列的名称，默认会使用『列标识』
             'title'  => '头像',
@@ -53,6 +54,9 @@ return [
 
         'operation' => [
             'title'  => '管理',
+            'output' => function ($value, $model) {
+                return $value;
+            },
             'sortable' => false,
         ],
     ],
@@ -71,6 +75,7 @@ return [
             // 表单使用 input 类型 password
             'type' => 'password',
         ],
+
         'avatar' => [
             'title' => '用户头像',
 
@@ -104,5 +109,6 @@ return [
         'email' => [
             'title' => '邮箱',
         ],
+
     ],
 ];
