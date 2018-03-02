@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\category;
 use App\models\User;
+use App\Models\Link;
 
 class CategoriesController extends Controller
 {
@@ -17,6 +18,8 @@ class CategoriesController extends Controller
                         ->paginate(20);
         $active_users = $user->getActiveUsers();
 
-        return view('topics.index', compact('topics', 'category', 'active_users'));
+        $links = $link->getAllCached();
+
+        return view('topics.index', compact('topics', 'category', 'active_users', 'links'));
     }
 }
