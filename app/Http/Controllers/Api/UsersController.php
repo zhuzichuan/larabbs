@@ -17,7 +17,7 @@ class UsersController extends Controller
         }
 
         if (!hash_equals($verifyData['code'], $request->verification_code)) {
-            return $this->reponse->errorUnauthorized('验证码错误');
+            return $this->response->errorUnauthorized('验证码错误');
         }
 
         $user =User::create([
