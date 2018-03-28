@@ -21,5 +21,17 @@ $api->version('v1', [
             ->name('api.users.store');
         $api->post('captchas', 'CaptchasController@store')
         ->name('api.captchas.store');
+
+        $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
+            ->name('api.socials.authorizations.store');
+        $api->post('authorizations', 'AuthorizationsController@store')
+        ->name('api.authorizations.store');
+
+        // 刷新token
+        $api->put('authorizations/current', 'AuthorizationsController@update')
+            ->name('api.authorizations.update');
+        // 删除token
+        $api->delete('authorizations/current', 'AuthorizationsController@destroy')
+            ->name('api.authorizations.destroy');
     });
 });
