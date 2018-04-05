@@ -6,7 +6,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array'
+    'middleware' => ['serializer:array', 'bindings']
 ], function($api) {
 
     $api->group([
@@ -53,6 +53,11 @@ $api->version('v1', [
             $api->patch('user', 'UsersController@update')
             ->name('api.user.update');
             $api->post('images', 'ImagesController@store')->name('api.images.store');
+            $api->post('topics', 'TopicController@store')
+            ->name('api.topics.store');
+
+            $api->patch('topics/{topic}', 'TopicController@update')
+            ->name('api.topics.upadte');
         });
     });
 
