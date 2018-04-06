@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\TopicRequest;
 use App\Transformers\TopicTransformer;
@@ -61,7 +62,7 @@ class TopicController extends Controller
     {
         $topic = $user->topics()->recent()
         ->paginate(20);
-        return $this->response->paginator($topics, new Topictransformer());
+        return $this->response->paginator($topic, new Topictransformer());
     }
 
     public function show(Topic $topic)

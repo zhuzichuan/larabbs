@@ -6,7 +6,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array', 'bindings']
+    'middleware' => ['serializer:array', 'bindings', 'change-locale']
 ], function($api) {
 
     $api->group([
@@ -54,6 +54,10 @@ $api->version('v1', [
         ->name('api.topics.replies,index');
         $api->get('users/{user}/replies', 'RepliesController@userIndex')
         ->name('api.users.replies.index');
+        $api->get('links', 'LinksController@index')
+        ->name('api.links.index');
+        $api->get('actived/users', 'UsersController@activedIndex')
+        ->name('api.actived.users.index');
         // 需要 token 验证的接口
         $api->group(['middleware' => 'api.auth'], function($api) {
             // 当前登录用户信息
@@ -83,8 +87,11 @@ $api->version('v1', [
             $api->get('users/notifications/stats', 'NotificationsController@stats')
             ->name('api.user.notifications.stats');
 
-            $api->patch('user/read/notifications', 'NotificationsController@read')
-            ->name('api.user.notifications.read');
+            $api->patch('users/read/notifications', 'NotificationsController@read')
+            ->name('api.user.nostifications.read');
+
+            $api->get('users/permissions', 'PermissionsController@index')
+            ->name('api.user.permissions.index');
         });
     });
 
