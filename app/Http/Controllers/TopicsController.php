@@ -9,6 +9,7 @@ use App\Http\Requests\TopicRequest;
 use App\Models\Category;
 use App\Handlers\ImageUploadHandler;
 use Auth;
+use Mail;
 use App\Models\User;
 use App\Models\Link;
 
@@ -16,7 +17,7 @@ class TopicsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'zhuzichuan', 'sendEmailConfirmationTo']]);
     }
 
     public function index(Request $request, Topic $topic, User $user, Link $link)
@@ -27,6 +28,26 @@ class TopicsController extends Controller
 
        return view('topics.index', compact('topics', 'active_users', 'links'));
    }
+
+   public function zhuzichuan(){
+       $user = User::find(1);
+       $this->sendEmailConfirmationTo($user);
+        session()->flash('success', '验证邮件已发送到你的注册邮箱上，请注意查收。');
+        return redirect('/');
+       return view('topics.zhuzichuan');
+   }
+
+   protected function sendEmailConfirmationTo($user)
+    {
+        $view = 'topics.zhuzichuan';
+        $to = $user->email;
+        $subject = "感谢注册 Sample 应用！请确认你的邮箱。";
+
+        Mail::send($view, ['user' => $user], function ($message) use ($to, $subject) {
+            $message->to($to)->subject($subject);
+        });
+    }
+
 
     public function show(Request $request, Topic $topic)
     {
