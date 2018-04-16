@@ -12,6 +12,8 @@ use Auth;
 use Mail;
 use App\Models\User;
 use App\Models\Link;
+use App\Models\VisitorRegistry;
+// use Visitor;
 
 class TopicsController extends Controller
 {
@@ -51,10 +53,33 @@ class TopicsController extends Controller
 
     public function show(Request $request, Topic $topic)
     {
+
+        // Visitor::log($topic->id);
+        if($this->hasTopic($topic->id) )
+        {
+            //ip already exist in db.
+            $visitor = VisitorRegistry::where('topic_id','=',$topic->id)->first();
+            $visitor->update(['clicks'=>$visitor->clicks + 1]);
+
+        }else{
+
+
+            $result = VisitorRegistry::create([
+                'clicks'     => 1,
+                'topic_id' => $topic->id,
+            ]);
+
+        }
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
+
         return view('topics.show', compact('topic'));
+    }
+
+    public function hasTopic($id)
+    {
+        return count(VisitorRegistry::where('topic_id','=',$id)->get()) > 0;
     }
 
 	public function create(Topic $topic)

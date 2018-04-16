@@ -27,6 +27,8 @@
 
     </div>
 
+
+
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -39,6 +41,10 @@
                     ⋅
                     <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                     {{ $topic->reply_count }}
+
+                        ⋅ <i class="fa fa-eye"></i>
+                        {{ $topic->visitors[0]->clicks }}
+
                 </div>
 
                 <div class="topic-body">
