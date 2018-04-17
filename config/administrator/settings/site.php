@@ -28,12 +28,12 @@ return [
             'limit' => 50,
         ],
         'seo_description' => [
-            'title' => 'SEO - Description',
+            'title' => 'SEO - 描述',
             'type' => 'textarea',
             'limit' => 250,
         ],
         'seo_keyword' => [
-            'title' => 'SEO - Keywords',
+            'title' => 'SEO - 关键词',
             'type' => 'textarea',
             'limit' => 250,
         ],

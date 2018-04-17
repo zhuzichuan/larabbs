@@ -18,7 +18,8 @@ trait LastActivedAtHelper
 
         // 字段名称，如：user_1
         $field = $this->getHashField();
-
+        // $a=new Carbon(Redis::hGet($hash, 'user_8'));
+        // dd($a->diffForHumans());
         // 当前时间，如：2017-10-21 08:35:15
         $now = Carbon::now()->toDateTimeString();
 

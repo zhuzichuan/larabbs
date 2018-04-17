@@ -51,6 +51,19 @@ return [
         'email' => [
             'title' => '邮箱',
         ],
+        'roles' => [
+            'title'  => '角色',
+            'output' => function ($value, $model) {
+                $model->load('roles');
+                $result = [];
+                foreach ($model->roles as $roles) {
+                    $result[] = $roles->name;
+                }
+
+                return  implode($result, ' | ')=='Maintainer' ? '管理员':$result;
+            },
+            'sortable' => false,
+        ],
 
         'operation' => [
             'title'  => '管理',
