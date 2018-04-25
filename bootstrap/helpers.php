@@ -45,6 +45,7 @@ function model_plural_name($model)
     return str_plural($snake_case_name);
 }
 
+
 function get_db_config()
 {
     if (getenv('IS_IN_HEROKU')) {
