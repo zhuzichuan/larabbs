@@ -169,8 +169,8 @@ return [
     */
 
     'auth' => [
-            // 'jwt' => 'Dingo\Api\Auth\Provider\JWT',
-             'oauth' => \App\Providers\PassportDingoProvider::class,
+            'jwt' => 'Dingo\Api\Auth\Provider\JWT',
+             // 'oauth' => \App\Providers\PassportDingoProvider::class,
     ],
 
     /*
