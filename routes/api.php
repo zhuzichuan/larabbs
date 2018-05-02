@@ -40,6 +40,8 @@ $api->version('v1', [
         // 删除token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('api.authorizations.destroy');
+        $api->get('users/{user}', 'UsersController@show')
+             ->name('api.users.show');
     });
 
     $api->group([
@@ -72,6 +74,8 @@ $api->version('v1', [
 
             $api->patch('user', 'UsersController@update')
             ->name('api.user.update');
+            $api->put('user', 'UsersController@update')
+                ->name('api.user.update');
             $api->post('images', 'ImagesController@store')->name('api.images.store');
             $api->post('topics', 'TopicController@store')
             ->name('api.topics.store');

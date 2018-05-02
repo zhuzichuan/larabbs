@@ -22,7 +22,7 @@ class TopicTransformer extends TransformerAbstract
             'excerpt' =>$topic->excerpt,
             'slug' =>$topic->slug,
             'created_at' => $topic->created_at->toDateTimeString(),
-            'created_at' => $topic->updated_at->toDateTimeString(),
+            'updated_at' => $topic->updated_at->toDateTimeString(),
         ];    }
 
         public function includeUser(Topic $topic)
