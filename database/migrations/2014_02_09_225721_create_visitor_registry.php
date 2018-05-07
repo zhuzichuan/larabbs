@@ -14,7 +14,6 @@
         {
             Schema::create('visitor_registry', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('ip', 32);
                 $table->string('country', 4)->nullable();
                 $table->integer('clicks')->unsigned()->default(0);
                 $table->timestamps();

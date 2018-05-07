@@ -91,16 +91,18 @@ $api->version('v1', [
             $api->delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')
             ->name('api.topics.replies.destroy');
 
-            $api->get('users/notifications', 'NotificationsController@index')
+            $api->get('user/notifications', 'NotificationsController@index')
             ->name('api.user.notifications.index');
 
-            $api->get('users/notifications/stats', 'NotificationsController@stats')
+            $api->get('user/notifications/stats', 'NotificationsController@stats')
             ->name('api.user.notifications.stats');
 
-            $api->patch('users/read/notifications', 'NotificationsController@read')
+            $api->patch('user/read/notifications', 'NotificationsController@read')
             ->name('api.user.nostifications.read');
+            $api->put('user/read/notifications', 'NotificationsController@read')
+                ->name('api.user.notifications.read.put');
 
-            $api->get('users/permissions', 'PermissionsController@index')
+            $api->get('user/permissions', 'PermissionsController@index')
             ->name('api.user.permissions.index');
         });
     });

@@ -37,7 +37,7 @@ class RepliesController extends Controller
 
     public function index(Topic $topic)
     {
-        $replies = $topic->replies()->paginate(20);
+        $replies = $topic->replies()->recent()->paginate(20);
 
         return $this->response->paginator($replies, new ReplyTransformer());
     }
